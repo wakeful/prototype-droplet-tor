@@ -1,0 +1,13 @@
+---
+- name: turn on random IP IDs
+  sysctl: name=net.inet.ip.random_id value=1 state=present
+
+- name: install tor package
+  pkgng: name=tor state=present
+
+- name: start tor on boot
+  shell: sysrc tor_enable="YES"
+
+- name: start tor Service
+  service: name=tor state=started
+
