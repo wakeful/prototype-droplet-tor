@@ -1,0 +1,22 @@
+---
+- name: install privoxy package
+  pkgng: name=privoxy state=present
+
+- name: check if config file is in place
+  stat: path=/usr/local/etc/privoxy/config
+  register: privoxy_config_present
+  ignore_errors: true
+
+- name: copy sample config
+  copy: remote_src=true src=/usr/local/share/examples/privoxy/config dest=/usr/local/etc/privoxy/config owner=privoxy group=privoxy mode=0644
+  when: not privoxy_config_present.stat.exists
+
+- name: set tor as sock5 Proxy
+  lineinfile: dest=/usr/local/etc/privoxy/config regexp="^forward-socks5t" line="forward-socks5t / 127.0.0.1:9050 ."
+
+- name: start privoxy on boot
+  shell: sysrc privoxy_enable="YES"
+
+- name: start privoxy Service
+  service: name=privoxy state=started
+
