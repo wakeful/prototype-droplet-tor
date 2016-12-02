@@ -1,0 +1,12 @@
+# https://cloud.digitalocean.com/settings/api/tokens
+do_token = "my_digital_ocean_token"
+
+# https://developers.digitalocean.com/documentation/v2/#list-all-regions
+do_region = "lon1"
+
+# Location of the public key that will be added to new droplet
+ssh_key_path = "~/.ssh/id_rsa.pub"
+
+# Droplet hostname
+do_droplet_name = "pTor"
+
