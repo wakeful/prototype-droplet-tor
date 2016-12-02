@@ -1,0 +1,8 @@
+---
+- name: main build
+  hosts: all
+  vars:
+    ansible_python_interpreter: "/usr/local/bin/python2"
+  roles:
+    - tor
+    - syslogd
