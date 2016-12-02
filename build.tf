@@ -13,5 +13,10 @@ resource "digitalocean_droplet" "tor" {
   region = "${var.do_region}"
   size = "512mb"
   ssh_keys = ["${digitalocean_ssh_key.tor_key.id}"]
+
+  provisioner "local-exec" {
+    command = "sleep 30; ansible-playbook -i '${digitalocean_droplet.tor.ipv4_address},' main.yml"
+  }
+
 }
 
