@@ -1,0 +1,4 @@
+---
+- name: force update
+  shell: pkg-static upgrade -y pkg
+
