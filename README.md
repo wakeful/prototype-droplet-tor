@@ -5,7 +5,22 @@
 
 ## Usage
 
-First we need to copy and edit the **tfvars** file - add [do_token](https://cloud.digitalocean.com/settings/api/tokens) / change [region](https://developers.digitalocean.com/documentation/v2/#list-all-regions) etc.
+Initializ provider plugin
+```
+$ terraform init
+
+Initializing provider plugins...
+- Checking for available provider plugins on https://releases.hashicorp.com...
+- Downloading plugin for provider "digitalocean" (0.1.2)...
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+```
+
+We need to copy and edit the **tfvars** file - add [do_token](https://cloud.digitalocean.com/settings/api/tokens) / change [region](https://developers.digitalocean.com/documentation/v2/#list-all-regions) etc.
 
 ```
 $ cp terraform.tfvars.example terraform.tfvars
