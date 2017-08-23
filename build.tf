@@ -8,7 +8,7 @@ resource "digitalocean_ssh_key" "tor_key" {
 }
 
 resource "digitalocean_droplet" "tor" {
-  image = "freebsd-11-0-x64"
+  image = "freebsd-11-1-x64"
   name = "${var.do_droplet_name}"
   region = "${var.do_region}"
   size = "512mb"
