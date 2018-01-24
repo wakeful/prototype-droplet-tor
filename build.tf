@@ -11,7 +11,7 @@ resource "digitalocean_droplet" "tor" {
   image = "freebsd-11-1-x64"
   name = "${var.do_droplet_name}"
   region = "${var.do_region}"
-  size = "512mb"
+  size = "s-1vcpu-1gb"
   ssh_keys = ["${digitalocean_ssh_key.tor_key.id}"]
 
   provisioner "local-exec" {
