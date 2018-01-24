@@ -30,30 +30,36 @@ After editing **terraform.tfvars** file validate the configuration
 ```
 $ terraform plan
 
-The Terraform execution plan has been generated and is shown below.
-Resources are shown in alphabetical order for quick scanning. Green resources
-will be created (or destroyed and then created if an existing resource
-exists), yellow resources are being changed in-place, and red resources
-will be destroyed.
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
 
-digitalocean_droplet.tor
-    image:                "" => "freebsd-11-0-x64"
-    ipv4_address:         "" => "<computed>"
-    ipv4_address_private: "" => "<computed>"
-    ipv6_address:         "" => "<computed>"
-    ipv6_address_private: "" => "<computed>"
-    locked:               "" => "<computed>"
-    name:                 "" => "pTor"
-    region:               "" => "lon1"
-    size:                 "" => "512mb"
-    ssh_keys.#:           "" => "<computed>"
-    status:               "" => "<computed>"
+Terraform will perform the following actions:
 
-digitalocean_ssh_key.tor_key
-    fingerprint: "" => "<computed>"
-    name:        "" => "pTor ssh key"
-    public_key:  "" => "ssh-rsa AAAA...\n"
+  + digitalocean_droplet.tor
+      id:                   <computed>
+      disk:                 <computed>
+      image:                "freebsd-11-1-x64"
+      ipv4_address:         <computed>
+      ipv4_address_private: <computed>
+      ipv6_address:         <computed>
+      ipv6_address_private: <computed>
+      locked:               <computed>
+      name:                 "pTor"
+      price_hourly:         <computed>
+      price_monthly:        <computed>
+      region:               "lon1"
+      resize_disk:          "true"
+      size:                 "s-1vcpu-1gb"
+      ssh_keys.#:           <computed>
+      status:               <computed>
+      vcpus:                <computed>
 
+  + digitalocean_ssh_key.tor_key
+      id:                   <computed>
+      fingerprint:          <computed>
+      name:                 "pTor ssh key"
+      public_key:           "ssh-rsa AAAA...\n"
 
 Plan: 2 to add, 0 to change, 0 to destroy.
 ```
@@ -62,25 +68,62 @@ Plan: 2 to add, 0 to change, 0 to destroy.
 Create **droplet**
 ```
 $ terraform apply
+digitalocean_ssh_key.tor_key: Refreshing state... (ID: 17773129)
 
-digitalocean_ssh_key.tor_key: Creating...
-  fingerprint: "" => "<computed>"
-  name:        "" => "pTor ssh key"
-  public_key:  "" => "ssh-rsa AAAA...\n" 
-digitalocean_ssh_key.tor_key: Creation complete
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + digitalocean_droplet.tor
+      id:                   <computed>
+      disk:                 <computed>
+      image:                "freebsd-11-1-x64"
+      ipv4_address:         <computed>
+      ipv4_address_private: <computed>
+      ipv6_address:         <computed>
+      ipv6_address_private: <computed>
+      locked:               <computed>
+      name:                 "pTor"
+      price_hourly:         <computed>
+      price_monthly:        <computed>
+      region:               "lon1"
+      resize_disk:          "true"
+      size:                 "s-1vcpu-1gb"
+      ssh_keys.#:           "1"
+      ssh_keys.0:           "17773129"
+      status:               <computed>
+      vcpus:                <computed>
+
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
 digitalocean_droplet.tor: Creating...
-  image:                "" => "freebsd-11-0-x64"
+  disk:                 "" => "<computed>"
+  image:                "" => "freebsd-11-1-x64"
   ipv4_address:         "" => "<computed>"
   ipv4_address_private: "" => "<computed>"
   ipv6_address:         "" => "<computed>"
   ipv6_address_private: "" => "<computed>"
   locked:               "" => "<computed>"
   name:                 "" => "pTor"
+  price_hourly:         "" => "<computed>"
+  price_monthly:        "" => "<computed>"
   region:               "" => "lon1"
-  size:                 "" => "512mb"
+  resize_disk:          "" => "true"
+  size:                 "" => "s-1vcpu-1gb"
   ssh_keys.#:           "" => "1"
-  ssh_keys.0:           "" => "digitalocean_ssh_key_id"
+  ssh_keys.0:           "" => "17773129"
   status:               "" => "<computed>"
+  vcpus:                "" => "<computed>"
+
 digitalocean_droplet.tor: Provisioning with 'local-exec'...
 digitalocean_droplet.tor (local-exec): Executing: /bin/sh -c "sleep 30; ansible-playbook -i 'digitalocean_droplet_ip_address,' main.yml"
 
